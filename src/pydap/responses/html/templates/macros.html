@@ -1,10 +1,5 @@
 {% macro dispatch(var) %}
 {% if var.__class__.__name__ == "GridType" %}
-<label for="{{ var.id }}">
-    <input name="{{ var.id }}" id="{{ var.id }}" type="checkbox" value="on"/>
-    Download this variable
-</label>
-
 {{ attributes(var.attributes) }}
 
 <fieldset>
@@ -18,18 +13,18 @@
             placeholder="0:1:{{ var[name].shape[0]-1 }}"/>
     </div>
     {% endfor %}
+    {{attributes(var.attributes)}}
 </fieldset>
 
-{% elif var.__class__.__name__ == "BaseType" %}
 <label for="{{ var.id }}">
     <input name="{{ var.id }}" id="{{ var.id }}" type="checkbox" value="on"/>
     Download this variable
 </label>
 
-{{ attributes(var.attributes) }}
+{% elif var.__class__.__name__ == "BaseType" %}
 
-{% if var.shape %}
 <fieldset>
+{% if var.shape %}
     <div>
         {% for shp in var.shape %}
         <label for="{{ var.id }}[{{ loop.index0 }}]">{{ var.name }}[{{ loop.index0 }}]</label>
@@ -43,11 +38,19 @@
         <input id="{{ var.id }}[{{ loop.index0 }}]" type="text" value="0" readonly/>
         {% endif %}
         {% endfor %}
+	before div
     </div>
-</fieldset>
+    {{attributes(var.attributes)}}
 {% endif %}
+<label for="{{ var.id }}">
+    <input name="{{ var.id }}" id="{{ var.id }}" type="checkbox" value="on"/>
+    Download this variable
+</label>
+</fieldset>
 
 {% elif var.__class__.__name__ == "SequenceType" %}
+<h2>{{var.id}}</h2> 
+
 {{ attributes(var.attributes) }}
 
 <fieldset>
