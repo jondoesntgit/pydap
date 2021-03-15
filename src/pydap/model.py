@@ -699,6 +699,11 @@ class SequenceType(StructureType):
         out.id = self.id
         return out
 
+    @property
+    def dtype(self):
+        return np.dtype([(child.name, child.dtype) for child in self.children()])
+        
+
 
 class GridType(StructureType):
 
