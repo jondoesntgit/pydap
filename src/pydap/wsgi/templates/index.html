@@ -55,7 +55,12 @@
             <td><a title="Download file" href="{{ file.name }}">{{ file.size|filesizeformat}}</a></td>
             <td>{{ file.last_modified|datetimeformat }}</td>
             {% if file.supported %}
-            <td><a title="View the DDS response" href="{{ file.name }}.dds">dds</a> | <a title="View the DAS response" href="{{ file.name }}.das">das</a></td>
+            <td>
+		    <a title="View the DDS response" href="{{ file.name }}.dds">dds</a> | 
+		    <a title="View the DAS response" href="{{ file.name }}.das">das</a> |
+		    <a title="View the DAS response" href="{{ file.name }}.xlsx">xlsx</a> |
+		    <a title="View the DAS response" href="{{ file.name }}.mat">mat</a>
+	    </td>
             {% else %}
             <td>&ndash;</td>
             {% endif %}
